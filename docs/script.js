@@ -13,20 +13,20 @@ const deskPositions = [
 // 2. 学生データ (前半: AM / 後半: PM)
 const students = {
     AM: {
-        1: { name: "田中 太郎", img: "board/test1.png", desc: "てすといちだにょ～ん" },
-        2: { name: "佐藤 花子", img: "board/test2.png", desc: "モデラーになりたかったなにか" },
-        3: { name: "鈴木 一郎", img: "board/test3.jpg", desc: "デカいケツで解決" },
-        4: { name: "高橋 次郎", img: "https://via.placeholder.com/600x400/ff0/000?text=Jiro's+Work", desc: "テクニカルアート検証" },
-        5: { name: "伊藤 三郎", img: "https://via.placeholder.com/600x400/0ff/000?text=Saburo's+Work", desc: "VRコンテンツ" },
-        6: { name: "渡辺 四郎", img: "https://via.placeholder.com/600x400/f0f/fff?text=Shiro's+Work", desc: "2Dコンセプトアート" }
+        1: { name: "田中 太郎", img: "board/CT43-001.jpg", desc: "てすといちだにょ～ん" },
+        2: { name: "佐藤 花子", img: "board/CT43-002.jpg", desc: "モデラーになりたかったなにか" },
+        3: { name: "鈴木 一郎", img: "board/CT43-003.jpg", desc: "デカいケツで解決" },
+        4: { name: "高橋 次郎", img: "board/CT43-004.jpg", desc: "テクニカルアート検証" },
+        5: { name: "伊藤 三郎", img: "board/CT43-005.jpg", desc: "VRコンテンツ" },
+        6: { name: "渡辺 四郎", img: "board/CT43-006.jpg", desc: "2Dコンセプトアート" }
     },
     PM: {
-        1: { name: "山本 五郎", img: "https://via.placeholder.com/600x400/333/fff?text=Goro's+Work", desc: "UIデザイン研究" },
-        2: { name: "中村 六郎", img: "https://via.placeholder.com/600x400/555/fff?text=Rokuro's+Work", desc: "シェーダー開発" },
-        3: { name: "小林 七郎", img: "https://via.placeholder.com/600x400/777/fff?text=Shichiro's+Work", desc: "リギング・モーション" },
-        4: { name: "加藤 八郎", img: "https://via.placeholder.com/600x400/999/fff?text=Hachiro's+Work", desc: "AI対戦ゲーム" },
-        5: { name: "吉田 九郎", img: "https://via.placeholder.com/600x400/bbb/000?text=Kuro's+Work", desc: "サウンドプログラミング" },
-        6: { name: "佐々木 十郎", img: "https://via.placeholder.com/600x400/ddd/000?text=Juro's+Work", desc: "オリジナル短編アニメ" }
+        1: { name: "山本 五郎", img: "board/CT43-007.jpg", desc: "UIデザイン研究" },
+        2: { name: "中村 六郎", img: "board/CT43-008.jpg", desc: "シェーダー開発" },
+        3: { name: "小林 七郎", img: "board/CT43-009.jpg", desc: "リギング・モーション" },
+        4: { name: "加藤 八郎", img: "board/CT43-010.jpg", desc: "AI対戦ゲーム" },
+        5: { name: "吉田 九郎", img: "board/CT43-011.jpg", desc: "サウンドプログラミング" },
+        6: { name: "佐々木 十郎", img: "board/CT43-012.jpg", desc: "オリジナル短編アニメ" }
     }
 };
 
