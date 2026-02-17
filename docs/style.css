@@ -16,11 +16,11 @@ html, body {
 /* --- 共通: マップ画像の箱 --- */
 .map-container {
     position: relative;
-    /* 【重要】画像の比率に合わせて数値を変更してください */
+    /* 【重要】ここに画像の比率を指定します。ここさえ合っていればズレません */
     aspect-ratio: 16 / 9; 
     
-    /* 画像が勝手に縮まないようにする */
-    flex-shrink: 0;
+    /* 余白が出たときに中央に寄せる */
+    margin: 0 auto;
 }
 
 /* 教室の画像 */
@@ -28,57 +28,55 @@ html, body {
     width: 100%;
     height: 100%;
     display: block;
-    object-fit: cover;
-    /* 画像のドラッグ禁止（誤操作防止） */
+    /* 画像のアスペクト比を維持して表示 */
+    object-fit: contain;
+    
+    /* 画像のドラッグ禁止 */
     pointer-events: none; 
     user-select: none;
     -webkit-user-drag: none;
 }
 
 /* -------------------------------------------
-   PC・横長画面の設定
-   横幅いっぱい、縦スクロール
+   PC・横長画面の設定 (Landscape)
+   横幅を基準にするが、無理な変形はさせない
 ------------------------------------------- */
 @media (orientation: landscape) {
     body {
         overflow-y: auto; /* 縦スクロール許可 */
         overflow-x: hidden;
         
-        /* 画面中央に配置 */
+        /* 画面中央に配置（高さに余裕がある場合） */
         display: flex;
-        justify-content: center;
-        align-items: flex-start;
+        flex-direction: column;
+        justify-content: center; 
     }
 
     .map-container {
-        width: 100vw;   /* 横幅いっぱい */
-        height: auto;   /* 高さは比率で自動計算 */
-        min-height: 100vh;
+        /* 横幅はいっぱいに */
+        width: 100vw;
+        /* 高さは比率に合わせて自動（ここが重要！min-heightを消しました） */
+        height: auto; 
     }
 }
 
 /* -------------------------------------------
-   スマホ・縦長画面の設定
-   【修正箇所】縦幅いっぱい、横スクロール
+   スマホ・縦長画面の設定 (Portrait)
+   縦幅を基準にする
 ------------------------------------------- */
 @media (orientation: portrait) {
     body {
-        /* 縦スクロールを完全に禁止（これで下の空白に行けなくなります） */
-        overflow-y: hidden;
-        /* 横スクロールのみ許可 */
-        overflow-x: auto;
+        overflow-y: hidden; /* 縦スクロール禁止 */
+        overflow-x: auto;   /* 横スクロール許可 */
         
-        /* 【重要】Flexboxにすることで、中身が画面幅を超えて広がれるようにする */
-        display: flex;
-        align-items: flex-start;
-        justify-content: flex-start;
+        /* 左上から配置 */
+        display: block;
     }
 
     .map-container {
-        /* 高さを画面の縦幅にピッタリ合わせる */
+        /* 高さを画面ピッタリに */
         height: 100dvh; 
-        
-        /* 高さが決まると、aspect-ratioにより横幅が自動で計算され、画面外へ広がる */
+        /* 横幅は比率に合わせて自動（画面より広くなる） */
         width: auto;
         
         margin: 0;
@@ -119,7 +117,7 @@ html, body {
 /* 切り替えボタン */
 .controls {
     position: fixed;
-    bottom: 30px; /* 少し上に上げました */
+    bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 100;
