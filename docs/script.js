@@ -30,6 +30,17 @@ const students = {
     }
 };
 
+
+// --- API設定エリア ---
+
+// ★ここにGASのウェブアプリURLを貼り付けます
+const GAS_API_URL = "https://script.google.com/macros/s/AKfycbyCZf_N1LbHuEm799OQXds_nhTIUuaFI3nR6R-dmrbifEEeFu5c1GIcFHAIV3Wba9MG/exec";
+
+// ★テスト用モード（trueならAPIを使わずランダムに色を変えます）
+// 本番公開時は false にしてください
+const DEBUG_MODE = false; 
+
+
 // --- プログラム処理エリア ---
 
 let currentShift = 'AM';
@@ -48,9 +59,13 @@ function renderMap() {
         if (student) {
             const desk = document.createElement('div');
             desk.className = 'desk';
+            // IDをHTML要素に埋め込む（後でステータス変更時に使うため）
+            desk.dataset.id = pos.id; 
+            
             desk.style.top = pos.top + '%';
             desk.style.left = pos.left + '%';
             desk.innerText = student.name;
+            
             desk.onclick = (e) => {
                 e.stopPropagation();
                 openModal(student);
@@ -61,8 +76,61 @@ function renderMap() {
 
     document.getElementById('btnAM').className = currentShift === 'AM' ? 'active' : '';
     document.getElementById('btnPM').className = currentShift === 'PM' ? 'active' : '';
+
+    // マップ再描画時にすぐにステータスも更新
+    updateStatus();
 }
 
+// ステータス更新機能
+async function updateStatus() {
+    
+    // ダミーデータ（テスト用）
+    if (DEBUG_MODE) {
+        console.log("DEBUG: ステータス更新（ダミー）");
+        deskPositions.forEach(pos => {
+            const desk = document.querySelector(`.desk[data-id="${pos.id}"]`);
+            if (desk) {
+                // 50%の確率で busy にする
+                const isBusy = Math.random() > 0.5;
+                if (isBusy) {
+                    desk.classList.add('busy');
+                } else {
+                    desk.classList.remove('busy');
+                }
+            }
+        });
+        return;
+    }
+
+    // 本番用（GASから取得）
+    try {
+        if (!GAS_API_URL || GAS_API_URL.includes("ここに")) {
+            console.warn("GAS_API_URLが設定されていません");
+            return;
+        }
+
+        const response = await fetch(GAS_API_URL);
+        const data = await response.json(); 
+        // 期待するデータ形式: { "1": "busy", "2": "free", ... }
+
+        Object.keys(data).forEach(id => {
+            const status = data[id];
+            const desk = document.querySelector(`.desk[data-id="${id}"]`);
+            if (desk) {
+                if (status === 'busy') {
+                    desk.classList.add('busy');
+                } else {
+                    desk.classList.remove('busy');
+                }
+            }
+        });
+
+    } catch (e) {
+        console.error("ステータス取得エラー:", e);
+    }
+}
+
+// モーダル制御
 function openModal(student) {
     document.getElementById('modalImg').src = student.img;
     document.getElementById('modalName').innerText = student.name;
@@ -78,6 +146,9 @@ function switchShift(shift) {
     currentShift = shift;
     renderMap();
 }
+
+// 30秒ごとにステータスを自動更新
+setInterval(updateStatus, 5000);
 
 // 初期実行
 renderMap();
