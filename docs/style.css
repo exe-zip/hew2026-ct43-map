@@ -16,7 +16,7 @@ html, body {
 .map-container {
     position: relative;
     /* 【重要】画像の比率設定（ここを変えると全体の比率が変わります） */
-    aspect-ratio: 16 / 9; 
+    aspect-ratio: 2 / 1; 
     
     margin: 0 auto;
     flex-shrink: 0;

@@ -2,12 +2,12 @@
 
 // 1. 机の配置データ (top: 上からの%, left: 左からの%)
 const deskPositions = [
-    { id: 1, top: 28.5, left: 7.3 },
-    { id: 2, top: 28.5, left: 15.4 },
-    { id: 3, top: 39.3, left: 13.4 },
-    { id: 4, top: 44.7, left: 13.4 },
-    { id: 5, top: 50.1, left: 26.63 },
-    { id: 6, top: 66.5, left: 67.4 }
+    { id: 1, top: 22, left: 8 },
+    { id: 2, top: 22, left: 16 },
+    { id: 3, top: 40, left: 14 },
+    { id: 4, top: 46, left: 14 },
+    { id: 5, top: 52, left: 24 },
+    { id: 6, top: 64, left: 66 }
 ];
 
 // 2. 学生データ (前半: AM / 後半: PM)
