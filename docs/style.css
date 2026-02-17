@@ -1,0 +1,197 @@
+@charset "UTF-8";
+
+/* --- 基本設定 --- */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    /* 基本的にスクロール禁止（モードごとに許可設定を変えるため） */
+    overflow: hidden; 
+    font-family: sans-serif;
+    background-color: #222;
+    color: #fff;
+}
+
+/* --- 共通: マップ画像の箱 --- */
+.map-container {
+    position: relative;
+    /* 【重要】画像の比率に合わせて数値を変更してください */
+    aspect-ratio: 16 / 9; 
+    
+    /* 画像が勝手に縮まないようにする */
+    flex-shrink: 0;
+}
+
+/* 教室の画像 */
+.floor-plan {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    /* 画像のドラッグ禁止（誤操作防止） */
+    pointer-events: none; 
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+/* -------------------------------------------
+   PC・横長画面の設定
+   横幅いっぱい、縦スクロール
+------------------------------------------- */
+@media (orientation: landscape) {
+    body {
+        overflow-y: auto; /* 縦スクロール許可 */
+        overflow-x: hidden;
+        
+        /* 画面中央に配置 */
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    .map-container {
+        width: 100vw;   /* 横幅いっぱい */
+        height: auto;   /* 高さは比率で自動計算 */
+        min-height: 100vh;
+    }
+}
+
+/* -------------------------------------------
+   スマホ・縦長画面の設定
+   【修正箇所】縦幅いっぱい、横スクロール
+------------------------------------------- */
+@media (orientation: portrait) {
+    body {
+        /* 縦スクロールを完全に禁止（これで下の空白に行けなくなります） */
+        overflow-y: hidden;
+        /* 横スクロールのみ許可 */
+        overflow-x: auto;
+        
+        /* 【重要】Flexboxにすることで、中身が画面幅を超えて広がれるようにする */
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+
+    .map-container {
+        /* 高さを画面の縦幅にピッタリ合わせる */
+        height: 100dvh; 
+        
+        /* 高さが決まると、aspect-ratioにより横幅が自動で計算され、画面外へ広がる */
+        width: auto;
+        
+        margin: 0;
+    }
+}
+
+/* -------------------------------------------
+   以下、机やボタンのデザイン（変更なし）
+------------------------------------------- */
+
+/* 机（クリックできるボタン） */
+.desk {
+    position: absolute;
+    width: 8%;  
+    height: 8%;
+    background-color: rgba(0, 255, 255, 0.4);
+    border: 2px solid cyan;
+    border-radius: 5px;
+    cursor: pointer;
+    transform: translate(-50%, -50%);
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    text-shadow: 0 0 3px black;
+    transition: transform 0.2s;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.desk:hover {
+    background-color: rgba(0, 255, 255, 0.7);
+    transform: translate(-50%, -50%) scale(1.1);
+    z-index: 10;
+}
+
+/* 切り替えボタン */
+.controls {
+    position: fixed;
+    bottom: 30px; /* 少し上に上げました */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px 20px;
+    border-radius: 30px;
+    display: flex;
+    gap: 10px;
+    white-space: nowrap;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    border-radius: 20px;
+    background: #444;
+    color: #fff;
+    transition: background 0.3s;
+}
+
+button.active {
+    background: cyan;
+    color: #000;
+}
+
+/* モーダル */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.9);
+    z-index: 200;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    animation: fadeIn 0.3s;
+}
+
+.modal img {
+    max-width: 90%;
+    max-height: 70vh;
+    border: 2px solid #fff;
+    box-shadow: 0 0 20px rgba(0,255,255,0.5);
+    object-fit: contain;
+}
+
+.modal-info {
+    margin-top: 20px;
+    text-align: center;
+    color: #fff;
+    width: 90%;
+}
+
+.modal-info h2 { margin: 0 0 10px 0; }
+.modal-info p { margin: 0; opacity: 0.8; }
+
+.close-btn {
+    position: absolute;
+    top: 20px; right: 20px;
+    color: white;
+    font-size: 40px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 10px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HalEventWeek CG教室マップ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="map-container" id="mapContainer">
+        <img src="bg/classroom.png" class="floor-plan" alt="教室マップ">
+        
+        </div>
+
+    <div class="controls">
+        <button id="btnAM" onclick="switchShift('AM')" class="active">前半 (AM)</button>
+        <button id="btnPM" onclick="switchShift('PM')">後半 (PM)</button>
+    </div>
+
+    <div class="modal" id="modal" onclick="closeModal()">
+        <button class="close-btn">&times;</button>
+        <img id="modalImg" src="" alt="作品画像">
+        <div class="modal-info">
+            <h2 id="modalName">名前</h2>
+            <p id="modalDesc">作品説明</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
