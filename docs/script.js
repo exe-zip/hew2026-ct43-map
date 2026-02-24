@@ -126,12 +126,23 @@ async function init() {
         // データの読み込みが終わってからマップを描画する
         renderMap();
         
+        // ▼▼ ここを追加：描画が終わったらローディング画面を非表示にする ▼▼
+        const loadingScreen = document.getElementById('loadingScreen');
+        if (loadingScreen) {
+            loadingScreen.classList.add('hidden');
+        }
+        
         // その後、5秒ごとにステータス（busy/free）を更新する処理をスタート
         setInterval(updateStatus, 5000);
         
     } catch (e) {
         console.error("学生データの読み込みに失敗しました:", e);
-        alert("データの読み込みに失敗しました。再読み込みしてください。");
+        
+        // エラー時もローディング表示を書き換えて状況を伝える
+        const loadingScreen = document.getElementById('loadingScreen');
+        if (loadingScreen) {
+            loadingScreen.innerHTML = `<p style="color: red;">データの読み込みに失敗しました。<br>ページを再読み込みしてください。</p>`;
+        }
     }
 }
 
