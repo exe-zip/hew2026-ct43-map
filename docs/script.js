@@ -1,6 +1,6 @@
 // --- 設定データエリア ---
 
-// 1. 机の配置データ (top: 上からの%, left: 左からの%)
+// 1. 机の配置データ (ここだけは今まで通り手動で配置)
 const deskPositions = [
     { id: 1, top: 22, left: 8 },
     { id: 2, top: 22, left: 12 },
@@ -11,56 +11,133 @@ const deskPositions = [
     { id: 7, top: 22, left: 32 },
     { id: 8, top: 22, left: 36 },
     { id: 9, top: 22, left: 40 },
-    { id: 10, top: 22, left: 44 }
+    { id: 10, top: 22, left: 44 },
+    { id: 11, top: 22, left: 56 },
+    { id: 12, top: 22, left: 60 },
+    { id: 13, top: 22, left: 64 },
+    { id: 14, top: 22, left: 68 },
+    { id: 15, top: 22, left: 72 },
+    { id: 16, top: 22, left: 76 },
+    { id: 17, top: 22, left: 80 },
+    { id: 18, top: 22, left: 84 },
+    { id: 19, top: 22, left: 88 },
+    { id: 20, top: 22, left: 92 },
+    { id: 21, top: 34, left: 16 },
+    { id: 22, top: 40, left: 14 },
+    { id: 23, top: 40, left: 18 },
+    { id: 24, top: 46, left: 14 },
+    { id: 25, top: 46, left: 18 },
+    { id: 26, top: 52, left: 11 },
+    { id: 27, top: 52, left: 15 },
+    { id: 28, top: 58, left: 11 },
+    { id: 29, top: 58, left: 15 },
+    { id: 30, top: 34, left: 29 },
+    { id: 31, top: 40, left: 27 },
+    { id: 32, top: 40, left: 31 },
+    { id: 33, top: 46, left: 27 },
+    { id: 34, top: 46, left: 31 },
+    { id: 35, top: 52, left: 24 },
+    { id: 36, top: 52, left: 28 },
+    { id: 37, top: 58, left: 24 },
+    { id: 38, top: 58, left: 28 },
+    { id: 39, top: 64, left: 21 },
+    { id: 40, top: 64, left: 25 },
+    { id: 41, top: 70, left: 21 },
+    { id: 42, top: 70, left: 25 },
+    { id: 43, top: 34, left: 42 },
+    { id: 44, top: 40, left: 40 },
+    { id: 45, top: 40, left: 44 },
+    { id: 46, top: 46, left: 40 },
+    { id: 47, top: 46, left: 44 },
+    { id: 48, top: 52, left: 37 },
+    { id: 49, top: 52, left: 41 },
+    { id: 50, top: 58, left: 37 },
+    { id: 51, top: 58, left: 41 },
+    { id: 52, top: 64, left: 34 },
+    { id: 53, top: 64, left: 38 },
+    { id: 54, top: 70, left: 34 },
+    { id: 55, top: 70, left: 38 },
+    { id: 56, top: 34, left: 58 },
+    { id: 57, top: 40, left: 56 },
+    { id: 58, top: 40, left: 60 },
+    { id: 59, top: 46, left: 56 },
+    { id: 60, top: 46, left: 60 },
+    { id: 61, top: 52, left: 59 },
+    { id: 62, top: 52, left: 63 },
+    { id: 63, top: 58, left: 59 },
+    { id: 64, top: 58, left: 63 },
+    { id: 65, top: 64, left: 62 },
+    { id: 66, top: 64, left: 66 },
+    { id: 67, top: 70, left: 62 },
+    { id: 68, top: 70, left: 66 },
+    { id: 69, top: 34, left: 71 },
+    { id: 70, top: 40, left: 69 },
+    { id: 71, top: 40, left: 73 },
+    { id: 72, top: 46, left: 69 },
+    { id: 73, top: 46, left: 73 },
+    { id: 74, top: 52, left: 72 },
+    { id: 75, top: 52, left: 76 },
+    { id: 76, top: 58, left: 72 },
+    { id: 77, top: 58, left: 76 },
+    { id: 78, top: 64, left: 75 },
+    { id: 79, top: 64, left: 79 },
+    { id: 80, top: 70, left: 75 },
+    { id: 81, top: 70, left: 79 },
+    { id: 82, top: 34, left: 84 },
+    { id: 83, top: 40, left: 82 },
+    { id: 84, top: 40, left: 86 },
+    { id: 85, top: 46, left: 82 },
+    { id: 86, top: 46, left: 86 },
+    { id: 87, top: 52, left: 85 },
+    { id: 88, top: 52, left: 89 },
+    { id: 89, top: 58, left: 85 },
+    { id: 90, top: 58, left: 89 },
+    { id: 91, top: 28, left: 96 },
+    { id: 92, top: 34, left: 96 },
+    { id: 93, top: 40, left: 96 },
+    { id: 94, top: 46, left: 96 },
+    { id: 95, top: 52, left: 96 },
+    { id: 96, top: 34, left: 4 },
+    { id: 97, top: 40, left: 4 },
+    { id: 98, top: 46, left: 4 },
+    { id: 99, top: 52, left: 4 },
+    { id: 100, top: 58, left: 4 },
+    { id: 101, top: 64, left: 4 },
 ];
 
-// 2. 学生データ (前半: AM / 後半: PM)
-const students = {
-    AM: {
-        1: { name: "一番太郎", img: "board/CT43-001.jpg", desc: "てすといちだにょ～ん" },
-        2: { name: "二番乃介", img: "board/CT43-002.jpg", desc: "モデラーになりたかったなにか" },
-        3: { name: "松健サンバ", img: "board/CT43-003.jpg", desc: "デカいケツで解決" },
-        4: { name: "高橋 次郎", img: "board/CT43-004.jpg", desc: "テクニカルアート検証" },
-        5: { name: "伊藤 三郎", img: "board/CT43-005.jpg", desc: "VRコンテンツ" },
-        6: { name: "渡辺 四郎", img: "board/CT43-006.jpg", desc: "2Dコンセプトアート" },
-        7: { name: "渡辺 四郎", img: "board/CT43-006.jpg", desc: "2Dコンセプトアート" },
-        8: { name: "渡辺 四郎", img: "board/CT43-006.jpg", desc: "2Dコンセプトアート" },
-        9: { name: "渡辺 四郎", img: "board/CT43-006.jpg", desc: "2Dコンセプトアート" },
-        10: { name: "渡辺 四郎", img: "board/CT43-006.jpg", desc: "2Dコンセプトアート" }
-    },
-    PM: {
-        1: { name: "山本 五郎", img: "board/CT43-007.jpg", desc: "UIデザイン研究" },
-        2: { name: "中村 六郎", img: "board/CT43-008.jpg", desc: "シェーダー開発" },
-        3: { name: "小林 七郎", img: "board/CT43-009.jpg", desc: "リギング・モーション" },
-        4: { name: "加藤 八郎", img: "board/CT43-010.jpg", desc: "AI対戦ゲーム" },
-        5: { name: "吉田 九郎", img: "board/CT43-011.jpg", desc: "サウンドプログラミング" },
-        6: { name: "佐々木 十郎", img: "board/CT43-012.jpg", desc: "オリジナル短編アニメ" },
-        7: { name: "渡辺 四郎", img: "board/CT43-006.jpg", desc: "2Dコンセプトアート" },
-        8: { name: "渡辺 四郎", img: "board/CT43-006.jpg", desc: "2Dコンセプトアート" },
-        9: { name: "渡辺 四郎", img: "board/CT43-006.jpg", desc: "2Dコンセプトアート" },
-        10: { name: "渡辺 四郎", img: "board/CT43-006.jpg", desc: "2Dコンセプトアート" }
-    }
-};
-
+// 2. 学生データ（初期値は空にしておき、APIから取得する）
+let students = { AM: {}, PM: {} };
 
 // --- API設定エリア ---
-
-// ★ここにGASのウェブアプリURLを貼り付けます
 const GAS_API_URL = "https://script.google.com/macros/s/AKfycbyCZf_N1LbHuEm799OQXds_nhTIUuaFI3nR6R-dmrbifEEeFu5c1GIcFHAIV3Wba9MG/exec";
-
-// ★テスト用モード（trueならAPIを使わずランダムに色を変えます）
-// 本番公開時は false にしてください
 const DEBUG_MODE = false; 
-
 
 // --- プログラム処理エリア ---
 
 let currentShift = 'AM';
 
+// ★新機能：一番最初に実行され、データを読み込む関数
+async function init() {
+    try {
+        // "?type=students" を付けて、学生データを要求する
+        const response = await fetch(GAS_API_URL + "?type=students");
+        students = await response.json();
+        
+        // データの読み込みが終わってからマップを描画する
+        renderMap();
+        
+        // その後、5秒ごとにステータス（busy/free）を更新する処理をスタート
+        setInterval(updateStatus, 5000);
+        
+    } catch (e) {
+        console.error("学生データの読み込みに失敗しました:", e);
+        alert("データの読み込みに失敗しました。再読み込みしてください。");
+    }
+}
+
 function renderMap() {
     const container = document.getElementById('mapContainer');
     
-    // 既存の机ボタンを削除
     const existingDesks = document.querySelectorAll('.desk');
     existingDesks.forEach(el => el.remove());
 
@@ -71,7 +148,6 @@ function renderMap() {
         if (student) {
             const desk = document.createElement('div');
             desk.className = 'desk';
-            // IDをHTML要素に埋め込む（後でステータス変更時に使うため）
             desk.dataset.id = pos.id; 
             
             desk.style.top = pos.top + '%';
@@ -89,41 +165,21 @@ function renderMap() {
     document.getElementById('btnAM').className = currentShift === 'AM' ? 'active' : '';
     document.getElementById('btnPM').className = currentShift === 'PM' ? 'active' : '';
 
-    // マップ再描画時にすぐにステータスも更新
     updateStatus();
 }
 
-// ステータス更新機能
 async function updateStatus() {
-    
-    // ダミーデータ（テスト用）
     if (DEBUG_MODE) {
-        console.log("DEBUG: ステータス更新（ダミー）");
-        deskPositions.forEach(pos => {
-            const desk = document.querySelector(`.desk[data-id="${pos.id}"]`);
-            if (desk) {
-                // 50%の確率で busy にする
-                const isBusy = Math.random() > 0.5;
-                if (isBusy) {
-                    desk.classList.add('busy');
-                } else {
-                    desk.classList.remove('busy');
-                }
-            }
-        });
+        // ... (ダミー処理は省略せず残してOKです) ...
         return;
     }
 
-    // 本番用（GASから取得）
     try {
-        if (!GAS_API_URL || GAS_API_URL.includes("ここに")) {
-            console.warn("GAS_API_URLが設定されていません");
-            return;
-        }
+        if (!GAS_API_URL || GAS_API_URL.includes("ここに")) return;
 
-        const response = await fetch(GAS_API_URL);
+        // "?type=status" を付けて、空き状況を要求する
+        const response = await fetch(GAS_API_URL + "?type=status");
         const data = await response.json(); 
-        // 期待するデータ形式: { "1": "busy", "2": "free", ... }
 
         Object.keys(data).forEach(id => {
             const status = data[id];
@@ -142,7 +198,6 @@ async function updateStatus() {
     }
 }
 
-// モーダル制御
 function openModal(student) {
     document.getElementById('modalImg').src = student.img;
     document.getElementById('modalName').innerText = student.name;
@@ -159,8 +214,5 @@ function switchShift(shift) {
     renderMap();
 }
 
-// 30秒ごとにステータスを自動更新
-setInterval(updateStatus, 5000);
-
-// 初期実行
-renderMap();
+// 最後にinitを実行してスタート
+init();
