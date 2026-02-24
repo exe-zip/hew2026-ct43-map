@@ -259,3 +259,91 @@ button.active {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+/* --- 追加機能：ヘルプ（使い方）画面 --- */
+
+/* 右上の「？」ボタン */
+.help-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.6);
+    border: 2px solid cyan;
+    color: cyan;
+    font-size: 22px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 100; /* マップより上に表示 */
+    transition: all 0.3s;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.help-btn:hover {
+    background-color: cyan;
+    color: #000;
+    box-shadow: 0 0 10px cyan;
+}
+
+/* 説明パネルのコンテンツ枠 */
+.help-content {
+    background-color: #222;
+    border: 2px solid cyan;
+    border-radius: 10px;
+    padding: 30px 20px;
+    width: 85%;
+    max-width: 500px;
+    color: #fff;
+    position: relative;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+}
+
+.help-content h2 {
+    margin-top: 0;
+    text-align: center;
+    color: cyan;
+    border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+    padding-bottom: 10px;
+}
+
+.help-desc p {
+    line-height: 1.6;
+    font-size: 15px;
+}
+
+.help-desc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 20px 0;
+}
+
+.help-desc li {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+}
+
+/* 説明文の中の四角い色アイコン */
+.color-box {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    border-radius: 3px;
+    border: 1px solid #fff;
+    flex-shrink: 0;
+}
+.color-box.cyan {
+    background-color: rgba(0, 255, 255, 0.6);
+    border-color: cyan;
+}
+.color-box.orange {
+    background-color: rgba(255, 170, 0, 0.6);
+    border-color: #ffaa00;
+}

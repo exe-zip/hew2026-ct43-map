@@ -225,5 +225,14 @@ function switchShift(shift) {
     renderMap();
 }
 
+// --- ヘルプモーダル制御 ---
+function openHelp() {
+    document.getElementById('helpModal').style.display = 'flex';
+}
+
+function closeHelp() {
+    document.getElementById('helpModal').style.display = 'none';
+}
+
 // 最後にinitを実行してスタート
 init();
