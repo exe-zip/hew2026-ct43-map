@@ -374,8 +374,8 @@ button.active {
     background-color: cyan; /* 通常時のアイコンの色 */
     
     /* ここに用意したSVGやPNGのファイルパスを指定します */
-    -webkit-mask-image: url('svg/icon_vote.png');
-    mask-image: url('svg/icon_vote.png');
+    -webkit-mask-image: url('svg/icon_vote.svg');
+    mask-image: url('svg/icon_vote.svg');
     
     -webkit-mask-size: contain;
     mask-size: contain;
