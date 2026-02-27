@@ -352,8 +352,12 @@ button.active {
 
 .vote-btn {
     position: fixed;
-    top: 20px;
-    right: 75px; 
+    
+    /* ▼▼ ここを変更 ▼▼ */
+    top: 75px;   /* ヘルプボタンの下に配置（20px + ボタン高さ45px + 隙間10px = 75px） */
+    right: 20px; /* ヘルプボタンと同じ右端の位置に揃える */
+    /* ▲▲ ここまで ▲▲ */
+
     width: 45px;
     height: 45px;
     border-radius: 50%;
