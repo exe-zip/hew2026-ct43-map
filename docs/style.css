@@ -347,3 +347,53 @@ button.active {
     background-color: rgba(255, 170, 0, 0.6);
     border-color: #ffaa00;
 }
+
+/* --- 追加機能：投票ボタン --- */
+
+.vote-btn {
+    position: fixed;
+    top: 20px;
+    right: 75px; 
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.6);
+    border: 2px solid cyan;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 100;
+    transition: all 0.3s;
+}
+
+/* 画像をマスク（型抜き）として使い、背景色でアイコンの色を表現する */
+.vote-icon {
+    width: 22px;
+    height: 22px;
+    background-color: cyan; /* 通常時のアイコンの色 */
+    
+    /* ここに用意したSVGやPNGのファイルパスを指定します */
+    -webkit-mask-image: url('svg/icon_vote.png');
+    mask-image: url('svg/icon_vote.png');
+    
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    
+    transition: background-color 0.3s;
+}
+
+/* ホバー時のアクション */
+.vote-btn:hover {
+    background-color: cyan;
+    box-shadow: 0 0 10px cyan;
+}
+
+/* ホバー時にアイコンの色を黒に反転させる */
+.vote-btn:hover .vote-icon {
+    background-color: #000;
+}
