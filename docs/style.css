@@ -401,3 +401,62 @@ button.active {
 .vote-btn:hover .vote-icon {
     background-color: #000;
 }
+/* --- 追加機能：投票ボタンの強調アニメーションと吹き出し --- */
+
+/* 吹き出しの基本デザイン */
+.vote-tooltip {
+    position: fixed;
+    /* 投票ボタン(top:75px)の中心に高さを合わせる計算 (75 + 45/2 = 97.5) */
+    top: 97.5px; 
+    /* 投票ボタンの左側に配置（right:20px + 幅45px + 隙間15px） */
+    right: 80px; 
+    
+    background-color: cyan;
+    color: #000;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    z-index: 100;
+    white-space: nowrap; /* 文字を折り返さない */
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    pointer-events: none; /* タップの邪魔にならないようにする */
+    
+    /* 初期状態は透明にして、少し右（ボタン側）にずらしておく */
+    opacity: 0;
+    visibility: hidden;
+    transform: translate(10px, -50%);
+    transition: all 0.5s ease;
+}
+
+/* 吹き出しの右側に付く小さな三角形（尻尾） */
+.vote-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -10px; /* 右に突き出す */
+    transform: translateY(-50%);
+    border-width: 6px 0 6px 10px;
+    border-style: solid;
+    border-color: transparent transparent transparent cyan;
+}
+
+/* 表示された時のクラス */
+.vote-tooltip.show {
+    opacity: 1;
+    visibility: visible;
+    /* 本来の位置にスライドしながら現れる */
+    transform: translate(0, -50%);
+}
+
+/* 投票ボタンが波紋のように光るアニメーション */
+@keyframes pulse-cyan {
+    0% { box-shadow: 0 0 0 0 rgba(0, 255, 255, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(0, 255, 255, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 255, 255, 0); }
+}
+
+/* アニメーションを発動させるクラス */
+.vote-btn.highlight {
+    animation: pulse-cyan 1.5s infinite;
+}

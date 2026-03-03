@@ -117,6 +117,7 @@ const DEBUG_MODE = false;
 let currentShift = 'AM';
 
 // ★新機能：一番最初に実行され、データを読み込む関数
+// ★新機能：一番最初に実行され、データを読み込む関数
 async function init() {
     try {
         // "?type=students" を付けて、学生データを要求する
@@ -126,19 +127,38 @@ async function init() {
         // データの読み込みが終わってからマップを描画する
         renderMap();
         
-        // ▼▼ ここを追加：描画が終わったらローディング画面を非表示にする ▼▼
+        // 描画が終わったらローディング画面を非表示にする
         const loadingScreen = document.getElementById('loadingScreen');
         if (loadingScreen) {
             loadingScreen.classList.add('hidden');
         }
         
+        // ▼▼ ここから追加：投票ボタンの強調表示アニメーション ▼▼
+        // ローディング画面がフェードアウトするのを待つ（800ミリ秒）
+        setTimeout(() => {
+            const voteBtn = document.getElementById('voteBtn');
+            const voteTooltip = document.getElementById('voteTooltip');
+            
+            if (voteBtn && voteTooltip) {
+                // 強調クラスをつける
+                voteBtn.classList.add('highlight');
+                voteTooltip.classList.add('show');
+                
+                // 6秒後に強調クラスを外す（自動でスッと消える）
+                setTimeout(() => {
+                    voteBtn.classList.remove('highlight');
+                    voteTooltip.classList.remove('show');
+                }, 6000);
+            }
+        }, 800);
+        // ▲▲ ここまで追加 ▲▲
+
         // その後、5秒ごとにステータス（busy/free）を更新する処理をスタート
         setInterval(updateStatus, 5000);
         
     } catch (e) {
+        // （エラー時の処理はそのまま）
         console.error("学生データの読み込みに失敗しました:", e);
-        
-        // エラー時もローディング表示を書き換えて状況を伝える
         const loadingScreen = document.getElementById('loadingScreen');
         if (loadingScreen) {
             loadingScreen.innerHTML = `<p style="color: red;">データの読み込みに失敗しました。<br>ページを再読み込みしてください。</p>`;
